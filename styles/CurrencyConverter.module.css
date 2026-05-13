@@ -1,0 +1,216 @@
+.converter {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.header h3 {
+  color: var(--primary-dark);
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.badge {
+  background: var(--light-green);
+  color: var(--primary-dark);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.currencySelect {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.currencySelect label {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+}
+
+.currencySelect select {
+  padding: 0.75rem;
+  border: 2px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.currencySelect select:focus {
+  outline: none;
+  border-color: var(--accent-teal);
+  box-shadow: 0 0 0 3px rgba(29, 211, 176, 0.1);
+}
+
+.currencySelect select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.rateDisplay {
+  background: var(--bg-light);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.rateItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rateLabel {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.rateValue {
+  color: var(--primary-teal);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+
+.loading {
+  display: inline-block;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.conversionBox {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(29, 211, 176, 0.05) 0%, rgba(178, 255, 158, 0.05) 100%);
+  border-radius: 10px;
+  border: 2px solid rgba(29, 211, 176, 0.2);
+}
+
+.conversionField {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.conversionLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.conversionValue {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary-teal);
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+}
+
+.conversionArrow {
+  color: var(--accent-teal);
+  font-size: 1.5rem;
+  opacity: 0.6;
+}
+
+.errorMessage {
+  background-color: #fff5f5;
+  border-left: 4px solid #ff6b6b;
+  padding: 1rem;
+  border-radius: 6px;
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  color: #c92a2a;
+  font-size: 0.95rem;
+}
+
+.errorMessage span {
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+
+.errorMessage p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.disclaimer {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  text-align: center;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .converter {
+    padding: 1.2rem;
+  }
+
+  .header {
+    margin-bottom: 1.2rem;
+  }
+
+  .header h3 {
+    font-size: 1.1rem;
+  }
+
+  .conversionBox {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .conversionArrow {
+    display: none;
+  }
+
+  .conversionValue {
+    font-size: 1.4rem;
+  }
+
+  .rateItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .errorMessage {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,157 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.totalCard {
+  background: linear-gradient(135deg, var(--accent-teal) 0%, var(--primary-teal) 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(8, 99, 117, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.totalCard::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.totalCard h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
+.amount {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  position: relative;
+  z-index: 1;
+}
+
+.breakdown {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.breakdown h3 {
+  color: var(--primary-dark);
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.categoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.categoryName {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+}
+
+.categoryAmount {
+  font-weight: 700;
+  color: var(--accent-teal);
+  font-size: 1rem;
+}
+
+.progressBar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--border-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-teal) 0%, var(--light-green) 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.emptyMessage {
+  color: var(--text-light);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .panel {
+    gap: 1.2rem;
+  }
+
+  .totalCard {
+    padding: 1.5rem;
+  }
+
+  .totalCard h2 {
+    font-size: 0.9rem;
+  }
+
+  .amount {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+  }
+
+  .breakdown {
+    padding: 1.2rem;
+  }
+
+  .breakdown h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .categoryList {
+    gap: 1rem;
+  }
+
+  .categoryName {
+    font-size: 0.9rem;
+  }
+}
