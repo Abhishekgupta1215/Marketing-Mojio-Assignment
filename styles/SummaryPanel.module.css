@@ -7,12 +7,13 @@
 .totalCard {
   background: linear-gradient(135deg, var(--accent-teal) 0%, var(--primary-teal) 100%);
   border-radius: 12px;
-  padding: 2rem;
+  padding: 1rem; /* smaller, slim card */
   color: white;
   text-align: center;
   box-shadow: 0 10px 30px rgba(8, 99, 117, 0.2);
   position: relative;
   overflow: hidden;
+  min-height: 96px; /* give a consistent small height */
 }
 
 .totalCard::before {
@@ -27,18 +28,18 @@
 }
 
 .totalCard h2 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   opacity: 0.9;
   position: relative;
   z-index: 1;
 }
 
 .amount {
-  font-size: 2.8rem;
+  font-size: 2rem; /* slightly smaller to fit slim card */
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   position: relative;
   z-index: 1;
 }
@@ -53,8 +54,17 @@
 .breakdown {
   background: white;
   border-radius: 12px;
-  padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden; /* ensure rounded corners are preserved */
+}
+
+/* Inner scroll container keeps padding and allows scrolling without breaking outer radius */
+.breakdownInner {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  min-height: var(--panel-height);
 }
 
 .breakdown h3 {
@@ -64,49 +74,62 @@
   font-weight: 600;
 }
 
-.categoryList {
+.pieChartContainer {
   display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+  align-items: flex-start; /* keep legend aligned to top of chart */
+  gap: 1.5rem;
+  flex-wrap: nowrap;
 }
 
-.categoryItem {
+.chartWrapper {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  justify-content: center;
+  min-width: 150px;
+  max-width: 220px;
 }
 
-.categoryHeader {
+/* Ensure legend and chart don't cause parent's height to expand beyond flex container */
+.legend {
+  overflow: auto;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two columns side-by-side */
+  gap: 0.75rem 1.25rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.legendItem {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
-.categoryName {
+.legendColor {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.legendContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.legendCategory {
   font-weight: 600;
   color: var(--text-dark);
   font-size: 0.95rem;
 }
 
-.categoryAmount {
-  font-weight: 700;
-  color: var(--accent-teal);
-  font-size: 1rem;
-}
-
-.progressBar {
-  width: 100%;
-  height: 8px;
-  background-color: var(--border-light);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent-teal) 0%, var(--light-green) 100%);
-  border-radius: 4px;
-  transition: width 0.3s ease;
+.legendAmount {
+  font-weight: 500;
+  color: var(--text-light);
+  font-size: 0.85rem;
 }
 
 .emptyMessage {
@@ -147,8 +170,18 @@
     margin-bottom: 1rem;
   }
 
-  .categoryList {
-    gap: 1rem;
+  .pieChartContainer {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .chartWrapper {
+    min-width: auto;
+  }
+
+  .legend {
+    width: 100%;
   }
 
   .categoryName {

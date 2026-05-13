@@ -2,64 +2,100 @@
 
 A modern, responsive personal expense tracker built with React and Next.js. Track your spending across categories and convert amounts to different currencies in real-time.
 
-**⚡ [Quick Start →](QUICK_START.md) (Get running in 2 minutes)**
+## ✨ Features
 
-## Features
+### Core Functionality
+- ✅ Add expenses with name, amount, and category
+- ✅ Display expenses as beautiful cards with category icons
+- ✅ Real-time running total of all expenses
+- ✅ Category-wise spending breakdown with visual progress bars
+- ✅ Delete expenses individually
+- ✅ Live currency conversion using exchangerate-api.com (free tier)
+- ✅ **💾 Persistent storage**: Expenses saved to browser (survives page refresh)
 
-✨ **Core Functionality**
-- Add expenses with name, amount, and category
-- Display expenses as beautiful cards with category icons
-- Real-time running total of all expenses
-- Category-wise spending breakdown with visual progress bars
-- Delete expenses individually
-- Live currency conversion using exchangerate-api.com (free tier)
-- **💾 Persistent storage**: Expenses saved to browser (survives page refresh)
+### Design & UX
+- 📱 Responsive design for desktop (1600px), tablet, and mobile (414px)
+- 🎨 Modern gradient UI with color scheme: `#3c1642`, `#086375`, `#1dd3b0`, `#affc41`, `#b2ff9e`
+- ✨ Smooth animations and transitions
+- 🏗️ Clean, semantic component-based structure
+- ⚠️ Error handling for API failures
 
-🎨 **Design & UX**
-- Responsive design for desktop (1600px), tablet, and mobile (414px)
-- Modern gradient UI with color scheme: `#3c1642`, `#086375`, `#1dd3b0`, `#affc41`, `#b2ff9e`
-- Smooth animations and transitions
-- Clean, semantic component-based structure
-- Error handling for API failures
+### Technical Stack
+- ⚛️ React 18 with Hooks (useState, useEffect)
+- 🚀 Next.js 14 (App Router)
+- 🎯 CSS Modules for scoped styling
+- 🌐 Public API integration (exchangerate-api.com)
+- 📦 No external state management libraries
+- 🎭 No UI kit templates
 
-⚙️ **Technical Stack**
-- React 18 with Hooks (useState, useEffect)
-- Next.js 14 (App Router)
-- CSS Modules for scoped styling
-- Public API integration (exchangerate-api.com)
-- No external state management libraries
-- No UI kit templates
+---
+
+## 🎯 Component Documentation
+
+### ExpenseForm (Add Expenses)
+- Users input expense details in a clean, validated form
+- **Validation**: Name (required, max 50 chars), Amount (required, >0, decimals supported), Category (5 pre-defined options)
+- **UX**: Smooth form reset after submission, visual feedback on interactions, mobile-friendly (16px font)
+- **Example**: "Coffee" → "$5.50" → "Food" category
+
+### ExpenseList (Display & Manage)
+- Shows all expenses in card format with:
+  - Category emoji icon (🍔 Food, ✈️ Travel, 📢 Marketing, 💡 Utilities, 📝 Other)
+  - Expense name, category badge, date added
+  - Amount in USD + converted amount (if currency changed)
+  - Delete button (✕)
+- **Features**: Colorful category badges, smooth hover effects, empty state message
+- **Responsive**: Horizontal layout on desktop, stacked layout on mobile
+
+### SummaryPanel (Analytics)
+- **Total Card**: Large gradient display showing total amount and expense count
+- **Category Breakdown**: Spending per category with visual progress bars
+- **Updates**: Real-time as expenses are added/deleted
+- **Styling**: Teal gradients, color-coded categories
+
+### CurrencyConverter
+- Real-time currency conversion widget
+- Displays converted amounts for all expenses
+- Free tier support (1,500 requests/month)
+
+---
 
 ## 📁 Project Structure
 
 ```
-expense-tracker/
+Marketing-Mojio-Assignment/
 ├── app/
 │   ├── layout.js           # Root layout
-│   ├── page.js             # Main page component
+│   └── page.js             # Main page component
 ├── components/
 │   ├── ExpenseForm.js      # Form to add expenses
 │   ├── ExpenseList.js      # Display expenses as cards
 │   ├── SummaryPanel.js     # Total and category breakdown
-│   ├── CurrencyConverter.js # Currency conversion widget
+│   └── CurrencyConverter.js # Currency conversion widget
 ├── styles/
 │   ├── globals.css         # Global styles
 │   ├── Home.module.css     # Main page styles
 │   ├── ExpenseForm.module.css
 │   ├── ExpenseList.module.css
 │   ├── SummaryPanel.module.css
-│   ├── CurrencyConverter.module.css
+│   └── CurrencyConverter.module.css
+├── utils/
+│   └── categoryColors.js   # Category color utilities
 ├── public/                 # Static assets
-└── package.json
+├── jsconfig.json           # JavaScript config
+├── next.config.js          # Next.js config
+└── package.json            # Dependencies
 ```
 
-## 🚀 Getting Started
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js 18+ installed
 - npm or yarn package manager
 
-### Installation
+### Installation & Running
 
 1. Clone the repository:
 ```bash
@@ -72,12 +108,21 @@ cd Marketing-Mojio-Assignment
 npm install
 ```
 
-3. Run the development server:
+3. Start development server:
 ```bash
 npm run dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+**That's it!** Your expense tracker is running locally.
+
+### Try These Actions
+1. **Add an expense**: "Coffee" → "$5.50" → "Food" category
+2. **See it update**: Check the summary panel
+3. **Change currency**: Select a different currency from dropdown
+4. **Delete it**: Click the ✕ button
+5. **Refresh page**: Expenses persist! 💾
 
 ### Build for Production
 
@@ -86,18 +131,89 @@ npm run build
 npm start
 ```
 
-## 📋 Usage
+Or deploy to Vercel (5 minutes):
+1. Push code to GitHub
+2. Visit [vercel.com](https://vercel.com)
+3. Click "New Project" → Select this repository
+4. Click "Deploy" → Live at `yourproject.vercel.app`
 
-1. **Add an Expense**
-   - Enter expense name (required)
-   - Enter amount in USD (required)
-   - Select a category (Food, Travel, Marketing, Utilities, Other)
-   - Click "Add Expense"
+---
 
-2. **View Expenses**
-   - All expenses appear in the "Recent Expenses" section
-   - Each card shows name, category, date, and amount
-   - Click the "✕" button to delete an expense
+## 📋 Usage Guide
+
+### Adding an Expense
+- Enter expense name (required)
+- Enter amount in USD (required)
+- Select a category: Food, Travel, Marketing, Utilities, or Other
+- Click "Add Expense"
+
+### Viewing & Managing
+- All expenses appear in the "Recent Expenses" section
+- Each card shows: emoji icon, name, category badge, date, amount, delete button
+- Click "✕" to delete an expense
+- Summary panel updates automatically
+
+### Currency Conversion
+- Select any currency from the dropdown
+- All amounts instantly convert using live exchange rates
+- Free API (1,500 requests/month) - no configuration needed
+- For higher limits, set `NEXT_PUBLIC_EXCHANGE_RATE_API_URL` env variable with your API key
+
+---
+
+## 🔧 Development Commands
+
+```bash
+npm run dev      # Start dev server (hot reload)
+npm run build    # Create production build
+npm start        # Run production server
+npm run lint     # Run ESLint
+```
+
+---
+
+## ❓ Troubleshooting
+
+**Port 3000 already in use?**
+```bash
+npm run dev -- -p 3001
+```
+
+**Dependencies not installing?**
+```bash
+npm cache clean --force
+rm -rf node_modules
+npm install
+```
+
+**Styles not loading?**
+- Clear browser cache (Ctrl+Shift+Del)
+- Restart dev server
+
+**API errors?**
+- Check internet connection
+- Verify: https://open.er-api.com/v6/latest/USD is accessible
+
+---
+
+## 📚 Technical Highlights
+
+- **Zero Setup**: Works out of the box, no environment variables needed for free tier
+- **Persistent Storage**: Uses browser localStorage for expense data
+- **Responsive**: Optimized for mobile (414px), tablet, and desktop (1600px)
+- **Performance**: Lightweight components, no unnecessary dependencies
+- **CORS Enabled**: Public API with excellent uptime
+- **Accessible**: Semantic HTML, proper form validation
+
+---
+
+## 📝 License
+
+This project is part of the Marketing Mojio Assignment by Abhishek Gupta.
+
+---
+
+**Happy tracking! 💰**
 
 3. **Track Spending**
    - Total expenses updates automatically in the Summary Panel

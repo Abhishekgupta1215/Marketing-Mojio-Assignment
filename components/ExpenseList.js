@@ -1,14 +1,8 @@
 import styles from '@/styles/ExpenseList.module.css'
+import categoryColors from '@/utils/categoryColors'
 
 const getCategoryColor = (category) => {
-  const colors = {
-    Food: '#FF6B6B',
-    Travel: '#4ECDC4',
-    Marketing: '#45B7D1',
-    Utilities: '#FFA07A',
-    Other: '#DDA0DD',
-  }
-  return colors[category] || '#999'
+  return categoryColors[category] || '#999'
 }
 
 const getCategoryIcon = (category) => {
@@ -51,7 +45,12 @@ export default function ExpenseList({
             <div className={styles.expenseInfo}>
               <h3>{expense.name}</h3>
               <div className={styles.meta}>
-                <span className={styles.category}>{expense.category}</span>
+                <span
+                  className={styles.category}
+                  style={{ backgroundColor: getCategoryColor(expense.category), color: '#fff' }}
+                >
+                  {expense.category}
+                </span>
                 <span className={styles.date}>{expense.date}</span>
               </div>
             </div>

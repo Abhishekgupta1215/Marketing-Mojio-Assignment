@@ -7,7 +7,7 @@
 .header {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
-  padding: 2.5rem 1.5rem;
+  padding: 1.5rem 1.5rem; /* reduced header height */
   text-align: center;
   color: white;
   border-bottom: 2px solid var(--accent-teal);
@@ -26,12 +26,41 @@
 }
 
 .container {
+  --panel-height: 520px; /* shared height for left panel and right stack */
   max-width: 1200px;
   margin: 2rem auto;
   padding: 0 1.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  align-items: start; /* keep columns top-aligned to avoid visual jump */
+}
+
+.topTotal {
+  max-width: 1200px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.5rem;
+}
+
+/* When the total card is rendered at the top, make it a full-width horizontal card */
+.topTotal .panel {
+  width: 100%;
+}
+
+.topTotal .totalCard {
+  padding: 1.25rem;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topTotal .totalCard .amount {
+  font-size: 2.4rem;
+}
+
+.topTotal .totalCard .subtitle {
+  font-size: 0.95rem;
 }
 
 .leftPanel {
@@ -39,13 +68,35 @@
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  height: fit-content;
+  min-height: var(--panel-height);
 }
 
 .rightPanel {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+/* Right stack hosts converter + breakdown; combined height matches leftPanel minus the slim total card above */
+.rightStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.rightStack > * {
+  flex: none; /* allow natural height for each child */
+}
+
+/* Force right stack to match left panel height and allow internal scrolling */
+.rightStack {
+  height: var(--panel-height);
+}
+
+.rightStack > * {
+  flex: 1 1 0;
+  min-height: 0; /* allow children to shrink and enable overflow */
+  overflow: hidden;
 }
 
 .listSection {
@@ -79,6 +130,20 @@
 
   .rightPanel {
     gap: 1.5rem;
+  }
+
+  /* disable fixed panel heights on tablet so stacking is natural */
+  .leftPanel {
+    min-height: auto;
+  }
+
+  .rightStack {
+    height: auto;
+  }
+
+  .rightStack > * {
+    flex: none;
+    overflow: visible;
   }
 }
 

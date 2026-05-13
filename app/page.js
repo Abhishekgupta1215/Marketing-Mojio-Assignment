@@ -123,6 +123,15 @@ export default function Home() {
         <p>Manage your expenses with real-time currency conversion</p>
       </div>
 
+      {/* Full width total card above all content */}
+      <div className={styles.topTotal}>
+        <SummaryPanel
+          mode="total"
+          totalAmount={totalAmount}
+          expenseCount={expenses.length}
+        />
+      </div>
+
       <div className={styles.container}>
         <div className={styles.leftPanel}>
           <ExpenseForm 
@@ -133,22 +142,25 @@ export default function Home() {
         </div>
 
         <div className={styles.rightPanel}>
-          <SummaryPanel
-            totalAmount={totalAmount}
-            categoryBreakdown={categoryBreakdown}
-            expenseCount={expenses.length}
-          />
+          {/* Stack converter and breakdown; their combined height will match the left panel */}
+          <div className={styles.rightStack}>
+            <CurrencyConverter
+              currencies={CURRENCIES}
+              selectedCurrency={selectedCurrency}
+              onCurrencyChange={setSelectedCurrency}
+              exchangeRate={exchangeRate}
+              totalAmount={totalAmount}
+              convertedAmount={convertedAmount}
+              loading={loading}
+              error={error}
+            />
 
-          <CurrencyConverter
-            currencies={CURRENCIES}
-            selectedCurrency={selectedCurrency}
-            onCurrencyChange={setSelectedCurrency}
-            exchangeRate={exchangeRate}
-            totalAmount={totalAmount}
-            convertedAmount={convertedAmount}
-            loading={loading}
-            error={error}
-          />
+            <SummaryPanel
+              mode="breakdown"
+              totalAmount={totalAmount}
+              categoryBreakdown={categoryBreakdown}
+            />
+          </div>
         </div>
       </div>
 

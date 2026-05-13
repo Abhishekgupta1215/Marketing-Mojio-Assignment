@@ -71,12 +71,11 @@
 }
 
 .category {
-  background: var(--accent-yellow);
-  color: var(--primary-dark);
   padding: 0.25rem 0.6rem;
   border-radius: 4px;
   font-weight: 600;
   font-size: 0.8rem;
+  display: inline-block;
 }
 
 .date {

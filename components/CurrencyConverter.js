@@ -10,6 +10,18 @@ export default function CurrencyConverter({
   loading,
   error,
 }) {
+  const renderLoadingState = (text) => (
+    <span className={styles.loadingState} aria-live="polite" aria-busy="true">
+      <span className={styles.spinner} aria-hidden="true" />
+      <span>{text}</span>
+      <span className={styles.loadingDots} aria-hidden="true">
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+      </span>
+    </span>
+  )
+
   return (
     <div className={styles.converter}>
       <div className={styles.header}>
@@ -38,7 +50,7 @@ export default function CurrencyConverter({
           <span className={styles.rateLabel}>Exchange Rate:</span>
           <span className={styles.rateValue}>
             {loading ? (
-              <span className={styles.loading}>Loading...</span>
+              renderLoadingState('Loading')
             ) : (
               `1 USD = ${exchangeRate.toFixed(4)} ${selectedCurrency}`
             )}
@@ -58,7 +70,7 @@ export default function CurrencyConverter({
           <div className={styles.conversionLabel}>{selectedCurrency}</div>
           <div className={styles.conversionValue}>
             {loading ? (
-              <span className={styles.loading}>...</span>
+              renderLoadingState('Updating')
             ) : (
               convertedAmount
             )}
