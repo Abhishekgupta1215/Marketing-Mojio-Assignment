@@ -131,12 +131,6 @@ npm run build
 npm start
 ```
 
-Or deploy to Vercel (5 minutes):
-1. Push code to GitHub
-2. Visit [vercel.com](https://vercel.com)
-3. Click "New Project" → Select this repository
-4. Click "Deploy" → Live at `yourproject.vercel.app`
-
 ---
 
 ## 📋 Usage Guide
@@ -205,13 +199,7 @@ npm install
 - **CORS Enabled**: Public API with excellent uptime
 - **Accessible**: Semantic HTML, proper form validation
 
----
 
-## 📝 License
-
-This project is part of the Marketing Mojio Assignment by Abhishek Gupta.
-
----
 
 **Happy tracking! 💰**
 
@@ -246,34 +234,6 @@ Layout adapts seamlessly:
 - **Rate Limit**: 1,500 requests/month (more than sufficient for personal use)
 - **Error Handling**: Graceful fallback if API fails
 
-## 📝 Configuration for Deployment
-
-### ⚡ Quick Deployment to Vercel (Recommended - 5 Minutes)
-
-**This is the easiest way to deploy:**
-
-1. **Push code to GitHub**
-   ```bash
-   git add .
-   git commit -m "Initial Expense Tracker"
-   git push origin main
-   ```
-
-2. **Deploy to Vercel**
-   - Go to [vercel.com](https://vercel.com)
-   - Click "New Project"
-   - Select this repository
-   - Click "Deploy"
-   - ✅ Done! Your site is live at `yourproject.vercel.app`
-
-3. **That's it!**
-   - No configuration needed
-   - Auto-deploys on every push to main
-   - Free SSL/HTTPS
-   - Lightning-fast performance
-
-**For detailed deployment options (GitHub Pages, Netlify, Docker, etc.), see [DEPLOYMENT.md](DEPLOYMENT.md)**
-
 ---
 
 ## 📝 Additional Configuration
@@ -289,21 +249,6 @@ Layout adapts seamlessly:
 - **If adding features later**: Create `.env.local` (see `.env.example`)
 
 ---
-
-### 1. **GitHub Repository Details**
-   - ✅ Make sure your repository is **public** for GitHub Pages
-   - If deploying to Vercel, it can be public or private
-
-### 2. **Deployment Options**
-   - **Recommended**: Vercel (steps above)
-   - **Alternative**: See [DEPLOYMENT.md](DEPLOYMENT.md) for GitHub Pages, Netlify, Docker, etc.
-
-## 🔐 Security Considerations
-
-- No sensitive data stored locally (uses sessionStorage/localStorage if needed in future)
-- API calls use public endpoints without authentication
-- Input validation on all forms
-- XSS protection through React's built-in escaping
 
 ## 📱 Browser Support
 
@@ -367,10 +312,6 @@ const CURRENCIES = ['USD', 'EUR', 'GBP', 'INR', 'CAD', 'AUD', 'JPY']
 - [ ] Dark mode toggle
 - [ ] Multi-language support
 - [ ] Backend integration for user accounts
-
-## 📄 License
-
-This project is open source and available under the MIT License.
 
 ## 👤 Author
 
