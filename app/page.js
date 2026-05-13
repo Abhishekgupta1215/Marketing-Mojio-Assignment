@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import ExpenseForm from '@/components/ExpenseForm'
 import ExpenseList from '@/components/ExpenseList'
 import SummaryPanel from '@/components/SummaryPanel'
@@ -16,6 +16,8 @@ export default function Home() {
   const [exchangeRates, setExchangeRates] = useState({ USD: 1 })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const listSectionRef = useRef(null)
+  const headerRef = useRef(null)
 
   // Load expenses from localStorage on mount
   useEffect(() => {
@@ -72,6 +74,20 @@ export default function Home() {
     fetchExchangeRates()
   }, [])
 
+  useEffect(() => {
+    const handleFirstClick = () => {
+      const headerHeight = headerRef.current?.offsetHeight ?? 0
+      // scroll down by header height so the header (title) is hidden
+      window.scrollTo({ top: headerHeight, behavior: 'smooth' })
+    }
+
+    window.addEventListener('click', handleFirstClick, { once: true })
+
+    return () => {
+      window.removeEventListener('click', handleFirstClick)
+    }
+  }, [])
+
   const exchangeRate = exchangeRates[selectedCurrency] || 1
 
   const addExpense = (expense) => {
@@ -118,7 +134,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <div className={styles.header}>
+      <div className={styles.header} ref={headerRef}>
         <h1>💰 Expense Tracker</h1>
         <p>Manage your expenses with real-time currency conversion</p>
       </div>
@@ -164,7 +180,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={styles.listSection}>
+      <div className={styles.listSection} ref={listSectionRef}>
         <h2>Recent Expenses</h2>
         <ExpenseList 
           expenses={expenses} 
